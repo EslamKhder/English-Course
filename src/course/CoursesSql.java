@@ -1,4 +1,5 @@
 package course;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
         7. Logging function
         8. Checking function
 */
-public class CoursesSql {
+public class CoursesSql implements Instraction{
 
     private final String DRIVER = "com.mysql.jdbc.Driver",
             URL = "jdbc:mysql://localhost:3306/me",
@@ -27,7 +28,7 @@ public class CoursesSql {
     private String instraction = null;
     private int result = 0;
     
-    // . Contact DataData
+    // . Connect DataData
     public CoursesSql() throws ClassNotFoundException {
         try {
             Class.forName(DRIVER);
@@ -39,6 +40,7 @@ public class CoursesSql {
         }
     }
     // . Student add function
+    @Override
     public int add(Student student) {
         instraction = "INSERT INTO COURSE (NameF, NameL, Age, SerialCode) values "
                 + "(?, ?, ?, ?)";
@@ -58,6 +60,7 @@ public class CoursesSql {
         return result;
     }
     // . Student fetch function
+    @Override
     public Student getStudent(Student student) {
         instraction = "SELECT * FROM COURSE WHERE SERIALCODE = ?";
         try {
@@ -82,6 +85,7 @@ public class CoursesSql {
         return student;
     }
     // . Student deletion function
+    @Override
     public int removeStudent(Student student) {
         instraction = "DELETE FROM COURSE WHERE NAMEF = ? AND NAMEL = ? AND SERIALCODE = ?";
         try {
@@ -94,13 +98,14 @@ public class CoursesSql {
                 JOptionPane.showMessageDialog(null, "Correct Your Data ",
                         "Connection Error", JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (Exception e) {
+        } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error Because " + e.toString(),
                     "Connection Error", JOptionPane.ERROR_MESSAGE);
         }
         return result;
     }
     // . Modification function for student information
+    @Override
     public int updateStudent(Student student) {
         instraction = "UPDATE COURSE SET NameF = ?, NameL = ?, Age = ? WHERE SERIALCODE = ? ";
         try {
@@ -110,7 +115,6 @@ public class CoursesSql {
             preparedstatement.setInt(3, student.getAge());
             preparedstatement.setString(4, student.getSerialcode());
             result = preparedstatement.executeUpdate();
-            System.out.println(result);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error Because " + e.toString(),
                     "Connection Error", JOptionPane.ERROR_MESSAGE);
@@ -118,6 +122,7 @@ public class CoursesSql {
         return result;
     }
     // . Logging function
+    @Override
     public LogIn getLogIn() {
         instraction = "SELECT * FROM LogIn";
         LogIn login = new LogIn();
@@ -136,6 +141,7 @@ public class CoursesSql {
         return login;
     }
     // Checking function
+    @Override
     public Student checkStudent(Student student) {
         instraction = "SELECT * FROM COURSE WHERE ID = ?";
         try {
@@ -160,6 +166,7 @@ public class CoursesSql {
         return student;
     }
     //. Serial number retrieval function
+    @Override
     public int updateSerialCode(Student student) {
         instraction = "UPDATE COURSE SET SERIALCODE = ? WHERE ID = ?";
         try {
