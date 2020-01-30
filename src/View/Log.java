@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Design;
+package View;
 
-import course.CoursesSql;
+import Controller.Controller;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -112,8 +112,8 @@ public class Log extends javax.swing.JFrame {
         String user = username.getText().trim().toLowerCase(),
         pass = password.getText().trim().toLowerCase();
         try {
-            CoursesSql coursesql = new CoursesSql();
-            course.LogIn login = coursesql.getLogIn();
+            Controller controller = new Controller();
+            Model.LogIn login = controller.getLogIn();
             if (login.getUsername().trim().equalsIgnoreCase(user)
                 && login.getPassword().trim().equalsIgnoreCase(pass)) {
                 this.dispose();
@@ -126,7 +126,7 @@ public class Log extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             }
 
-        } catch (HeadlessException | ClassNotFoundException e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error in Data_Bace", "Error",
                 JOptionPane.ERROR_MESSAGE);
         }

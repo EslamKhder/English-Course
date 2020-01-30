@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Design;
+package View;
 
 /**
  *
@@ -114,7 +114,7 @@ public class ManageCourse extends javax.swing.JFrame {
         jButton7.setBounds(10, 170, 180, 60);
 
         jLabel2.setBackground(new java.awt.Color(204, 0, 51));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Design/staff2.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/staff2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 620, 240);
 

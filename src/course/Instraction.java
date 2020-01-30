@@ -5,10 +5,8 @@
  */
 package course;
 
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import Model.LogIn;
+import Model.Student;
 
 /**
  *

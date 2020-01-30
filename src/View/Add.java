@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Design;
+package View;
 
-import course.CoursesSql;
-import course.Student;
+import Controller.Controller;
+import Model.Student;
 import javax.swing.JOptionPane;
 
 /**
@@ -220,13 +220,13 @@ public class Add extends javax.swing.JFrame {
                 serialcode = code.getText().trim().toLowerCase();
         try {
             int age = Integer.parseInt(Age.getText().trim().toLowerCase());
-            CoursesSql coursesql = new CoursesSql();
+            Controller controller = new Controller();
             Student student = new Student();
             student.setNamef(namefirst);
             student.setNamel(namelast);
             student.setAge(age);
             student.setSerialcode(serialcode);
-            int result = coursesql.add(student);
+            int result = controller.add(student);
             if (result == 1) {
                 JOptionPane.showMessageDialog(null, "Success Add", "Add Student",
                         JOptionPane.INFORMATION_MESSAGE);

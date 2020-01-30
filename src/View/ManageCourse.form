@@ -165,7 +165,7 @@
           <Color blue="33" green="0" red="cc" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Design/staff2.png"/>
+          <Image iconType="3" name="/View/staff2.png"/>
         </Property>
       </Properties>
       <Constraints>

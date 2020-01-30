@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Design;
+package View;
 
-import course.CoursesSql;
-import course.Student;
+import Controller.Controller;
+import Model.Student;
 import javax.swing.JOptionPane;
 
 /**
@@ -149,24 +149,20 @@ public class Delete extends javax.swing.JFrame {
         String namefirst = namef.getText().trim().toLowerCase(),
                 namelast = namel.getText().trim().toLowerCase(),
                 serialcode = code.getText().trim().toLowerCase();
-        try {
-            Student student = new Student();
-            student.setNamef(namefirst);
-            student.setNamel(namelast);
-            student.setSerialcode(serialcode);
-            CoursesSql coursessql = new CoursesSql();
-            int result = coursessql.removeStudent(student);
-            if (result == 1) {
-                JOptionPane.showMessageDialog(null, "Success Delete", "Delete Student",
-                        JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-                ManageCourse managecourse = new ManageCourse();
-                managecourse.setSize(625, 270);
-                managecourse.setResizable(false);
-                managecourse.show();
-            }
-        } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "SQL ERROR ", "ERROR", JOptionPane.ERROR_MESSAGE);
+        Student student = new Student();
+        student.setNamef(namefirst);
+        student.setNamel(namelast);
+        student.setSerialcode(serialcode);
+        Controller controller = new Controller();
+        int result = controller.removeStudent(student);
+        if (result == 1) {
+            JOptionPane.showMessageDialog(null, "Success Delete", "Delete Student",
+                    JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            ManageCourse managecourse = new ManageCourse();
+            managecourse.setSize(625, 270);
+            managecourse.setResizable(false);
+            managecourse.show();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

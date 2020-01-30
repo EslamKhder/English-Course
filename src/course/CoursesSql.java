@@ -1,4 +1,6 @@
 package course;
+import Model.LogIn;
+import Model.Student;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,7 +31,7 @@ public class CoursesSql implements Instraction{
     private int result = 0;
     
     // . Connect DataData
-    public CoursesSql() throws ClassNotFoundException {
+    public CoursesSql() {
         try {
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(
@@ -115,7 +117,7 @@ public class CoursesSql implements Instraction{
             preparedstatement.setInt(3, student.getAge());
             preparedstatement.setString(4, student.getSerialcode());
             result = preparedstatement.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error Because " + e.toString(),
                     "Connection Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -175,11 +177,11 @@ public class CoursesSql implements Instraction{
             preparedstatement.setString(1, student.getSerialcode());
             preparedstatement.setString(2, String.valueOf(student.getId()));
             result = preparedstatement.executeUpdate();
-            System.out.println(result);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error Because " + e.toString(),
                     "Connection Error", JOptionPane.ERROR_MESSAGE);
         }
         return result;
     }
+
 }

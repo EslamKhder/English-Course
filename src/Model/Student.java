@@ -1,4 +1,4 @@
-package course;
+package Model;
 // Getter and Setter Data of Student
 public class Student {
 

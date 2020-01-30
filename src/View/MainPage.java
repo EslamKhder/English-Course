@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Design;
+package View;
 
 import javax.swing.JOptionPane;
 
@@ -96,7 +96,7 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 60, 540, 150);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Design/s.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/s.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(4, 0, 590, 300);
 

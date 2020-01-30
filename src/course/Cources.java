@@ -5,7 +5,8 @@
  */
 package course;
 
-import Design.Log;
+import Model.Student;
+import View.Log;
 
 /**
  *
@@ -14,11 +15,11 @@ import Design.Log;
 public class Cources {
 
     public static void main(String[] args) throws ClassNotFoundException {
-        CoursesSql q = new CoursesSql();
         Log log = new Log();
         log.setSize(340, 330);
         log.setResizable(false);
         log.show();
+        
     }
 
 }

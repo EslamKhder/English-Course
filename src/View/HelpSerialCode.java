@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Design;
+package View;
 
+import Controller.Controller;
 import course.CoursesSql;
-import course.Student;
+import Model.Student;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,9 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class HelpSerialCode extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HelpSerialCode
-     */
+    private int idstudent;
+
     public HelpSerialCode() {
         initComponents();
     }
@@ -235,13 +235,14 @@ public class HelpSerialCode extends javax.swing.JFrame {
         Student student = new Student();
         try {
             int id = Integer.parseInt(ID.getText().trim());
+            idstudent = id;
             student.setId(id);
             student.setNamef(namef);
             student.setNamel(namel);
             student.setSerialcode(serialcode);
-            CoursesSql coursessql = new CoursesSql();
+            Controller controller = new Controller();
             Student student1 = new Student();
-            student1 = coursessql.checkStudent(student);
+            student1 = controller.checkStudent(student);
             String code1 = student1.getSerialcode().trim().toLowerCase().substring(0, 2);
             if (student1.getAge() != 0 && code1.equals(serialcode)) {
                 String newserialcode = JOptionPane.showInputDialog(null, "Enter New SerialCode", "New SerialCode",
@@ -250,13 +251,19 @@ public class HelpSerialCode extends javax.swing.JFrame {
                 CoursesSql coursessql1 = new CoursesSql();
                 int result = coursessql1.updateSerialCode(student1);
                 if (result == 1) {
-                    JOptionPane.showMessageDialog(null, "Success UPDATE", "Add Student",
+                    JOptionPane.showMessageDialog(null, "Success UPDATE", "Code UpDate",
                             JOptionPane.INFORMATION_MESSAGE);
+                    // another way to update serial code 
+//                    this.dispose();
+//                    RewriteCode rewritecode = new RewriteCode(idstudent);
+//                    rewritecode.setResizable(false);
+//                    rewritecode.setSize(890, 230);
+//                    rewritecode.show();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Not Changed \n"
                         + "Make Sure About Your Data", "Warning",
-                            JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.INFORMATION_MESSAGE);
             }
             this.dispose();
             ManageCourse managecourse = new ManageCourse();
@@ -264,7 +271,7 @@ public class HelpSerialCode extends javax.swing.JFrame {
             managecourse.setResizable(false);
             managecourse.show();
 
-        } catch (ClassNotFoundException | NumberFormatException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Your ID must include only number ",
                     "Write ERROR", JOptionPane.ERROR_MESSAGE);
         }
